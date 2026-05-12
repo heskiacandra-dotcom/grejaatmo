@@ -1,0 +1,729 @@
+/* Google Fonts — must be first @import */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap");
+@import "tailwindcss";
+
+/* ============================================================
+   GEREJA KATOLIK PAROKI KELUARGA KUDUS ATMODIRONO
+   Design System — Tailwind CSS v4 (CSS-first config)
+   Color: Ivory White + Gold Sacred
+   ============================================================ */
+
+@theme {
+  /* ── Typography ── */
+  --font-display: "Cinzel", "Georgia", serif;
+  --font-heading: "Playfair Display", "Georgia", serif;
+  --font-accent: "Cormorant Garamond", "Georgia", serif;
+  --font-sans: "Inter", "system-ui", sans-serif;
+
+  /* ── Sacred Color Palette ── */
+  --color-ivory:        #FDFAF4;
+  --color-ivory-dark:   #F5F0E4;
+  --color-ivory-deeper: #EDE8D8;
+  --color-cream:        #F0E8D0;
+  --color-gold:         #C9A84C;
+  --color-gold-light:   #E4C97A;
+  --color-gold-dark:    #A07830;
+  --color-gold-muted:   #D4B96A;
+  --color-charcoal:     #1A1614;
+  --color-charcoal-mid: #2C2420;
+  --color-brown:        #5C3D2E;
+  --color-mist:         #8B7355;
+  --color-mist-light:   #B09878;
+  --color-sage:         #6B7C5E;
+  --color-border:       #E2D8C0;
+  --color-border-light: #EDE8D8;
+  --color-white:        #FFFFFF;
+
+  /* ── Spacing ── */
+  --spacing-section: 7rem;
+  --spacing-section-sm: 4rem;
+
+  /* ── Border Radius ── */
+  --radius-card: 1rem;
+  --radius-sm: 0.5rem;
+
+  /* ── Shadows ── */
+  --shadow-gold: 0 4px 24px rgba(201, 168, 76, 0.15);
+  --shadow-card: 0 8px 32px rgba(26, 22, 20, 0.08);
+  --shadow-elevated: 0 20px 60px rgba(26, 22, 20, 0.12);
+
+  /* ── Animation Durations ── */
+  --duration-slow: 0.8s;
+  --duration-medium: 0.5s;
+  --duration-fast: 0.3s;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fonts imported at top of file */
+
+/* ============================================================
+   BASE RESET & GLOBAL STYLES
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scroll */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ============================================================
+   TYPOGRAPHY SCALE
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-charcoal);
+}
+
+.font-display { font-family: var(--font-display); }
+.font-heading { font-family: var(--font-heading); }
+.font-accent  { font-family: var(--font-accent); }
+.font-sans    { font-family: var(--font-sans); }
+
+/* ============================================================
+   CUSTOM COMPONENTS
+   ============================================================ */
+
+/* ── Preloader ── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* ── Gold Divider ── */
+.divider-gold {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  margin: 1.5rem auto;
+}
+
+.divider-gold-left {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+  margin: 1rem 0;
+}
+
+/* ── Section Label ── */
+.section-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-gold);
+}
+
+/* ── Gold Button ── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.3s var(--ease-out-expo);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-gold-dark);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease-out-expo);
+  z-index: 0;
+}
+
+.btn-gold:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-gold > * { position: relative; z-index: 1; }
+
+/* ── Outline Button ── */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: var(--color-gold);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-gold);
+  border-radius: 2px;
+  transition: all 0.3s var(--ease-out-expo);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+/* ── Card ── */
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-elevated);
+  transform: translateY(-4px);
+}
+
+/* ── Glass Card ── */
+.card-glass {
+  background: rgba(253, 250, 244, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 216, 192, 0.5);
+  border-radius: var(--radius-card);
+}
+
+/* ── Section Base ── */
+.section-base {
+  padding: var(--spacing-section) 0;
+}
+
+.section-base-sm {
+  padding: var(--spacing-section-sm) 0;
+}
+
+/* ── Container ── */
+.container-main {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (min-width: 768px) {
+  .container-main { padding: 0 2.5rem; }
+}
+
+@media (min-width: 1280px) {
+  .container-main { padding: 0 3rem; }
+}
+
+/* ── Ornament Cross ── */
+.ornament-cross {
+  color: var(--color-gold-muted);
+  font-size: 1.2rem;
+  opacity: 0.6;
+  user-select: none;
+}
+
+/* ── Schedule Card ── */
+.schedule-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.schedule-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-gold);
+  border-radius: 0 2px 2px 0;
+}
+
+.schedule-card:hover {
+  box-shadow: var(--shadow-gold);
+  transform: translateX(4px);
+}
+
+/* ── News Card ── */
+.news-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out-expo);
+  cursor: pointer;
+}
+
+.news-card:hover {
+  box-shadow: var(--shadow-elevated);
+  transform: translateY(-6px);
+}
+
+.news-card-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.news-card:hover .news-card-image {
+  transform: scale(1.05);
+}
+
+/* ── Announcement Banner ── */
+.announcement-ticker {
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.6rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ── Scroll Reveal Animation Classes ── */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.reveal-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+}
+
+/* ── Navigation ── */
+.nav-glass {
+  background: rgba(253, 250, 244, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-link {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: width 0.3s var(--ease-out-expo);
+}
+
+.nav-link:hover {
+  color: var(--color-gold-dark);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--color-gold-dark);
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ── Warta Card ── */
+.warta-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.warta-card:hover {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+
+/* ── Hero Grain Texture ── */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── CMS Sidebar ── */
+.cms-sidebar {
+  background: var(--color-charcoal);
+  color: var(--color-ivory);
+  min-height: 100vh;
+  width: 260px;
+  padding: 1.5rem;
+}
+
+.cms-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: rgba(253, 250, 244, 0.7);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cms-nav-link:hover,
+.cms-nav-link.active {
+  background: rgba(201, 168, 76, 0.15);
+  color: var(--color-gold-light);
+}
+
+/* ── Form Inputs ── */
+.input-sacred {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-white);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.input-sacred:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+}
+
+/* ── Prose (Article Content) ── */
+.prose-sacred {
+  color: var(--color-charcoal-mid);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.prose-sacred h1,
+.prose-sacred h2,
+.prose-sacred h3 {
+  font-family: var(--font-heading);
+  color: var(--color-charcoal);
+  margin: 2rem 0 1rem;
+}
+
+.prose-sacred p { margin-bottom: 1.25rem; }
+.prose-sacred a { color: var(--color-gold-dark); text-decoration: underline; }
+.prose-sacred blockquote {
+  border-left: 3px solid var(--color-gold);
+  padding-left: 1.5rem;
+  font-family: var(--font-accent);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--color-mist);
+  margin: 2rem 0;
+}
+
+/* ── Tag Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-gold {
+  background: rgba(201, 168, 76, 0.15);
+  color: var(--color-gold-dark);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+.badge-success {
+  background: rgba(107, 124, 94, 0.15);
+  color: var(--color-sage);
+  border: 1px solid rgba(107, 124, 94, 0.3);
+}
+
+.badge-danger {
+  background: rgba(180, 60, 60, 0.1);
+  color: #b43c3c;
+  border: 1px solid rgba(180, 60, 60, 0.2);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ivory-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-muted);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-dark);
+}
+
+/* ── Cursor Custom ── */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.1s ease;
+  mix-blend-mode: multiply;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  transition: transform 0.12s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+/* ── Page Transition Curtain ── */
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  background: var(--color-charcoal);
+  z-index: 9998;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+/* ── Hero Counter Number ── */
+.counter-number {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 600;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+/* ── Mobile Menu (Floating Dropdown) ── */
+.mobile-menu {
+  position: fixed;
+  top: 80px; /* Below navbar */
+  right: 2rem;
+  width: 260px;
+  background: var(--color-charcoal-mid);
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-20px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.mobile-menu.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-ivory);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(253, 250, 244, 0.05);
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-gold);
+  transform: translateX(5px);
+}
+
+/* ── Page Header ── */
+.page-header {
+  background: linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-charcoal-mid) 100%);
+  padding: 8rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+/* ── Responsive Utilities ── */
+@media (max-width: 768px) {
+  .section-base {
+    padding: calc(var(--spacing-section) * 0.6) 0;
+  }
+}
+
+/* ── Tiptap Editor ── */
+.tiptap-editor {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.tiptap-toolbar {
+  background: var(--color-ivory-dark);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.tiptap-content {
+  padding: 1.5rem;
+  min-height: 300px;
+  outline: none;
+}
+
+.tiptap-content:focus {
+  outline: none;
+}
+
+/* ── Print Styles ── */
+@media print {
+  .no-print { display: none !important; }
+}
