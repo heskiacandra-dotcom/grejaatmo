@@ -1,29 +1,26 @@
-const path = require("path");
-const { createServer } = require("http");
-const { parse } = require("url");
-const next = require("next");
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
 
-// Configuration for standalone execution in shared hosting (cPanel/Plesk)
-const dev = process.env.NODE_ENV !== "production";
-const hostname = "localhost";
-const port = process.env.PORT || 3000;
-
-// Initialize Next.js app from the standalone output directory
+const dev = process.env.NODE_ENV !== 'production';
+const hostname = 'localhost';
+// Server cPanel akan otomatis menyuntikkan port melalui process.env.PORT
+const port = process.env.PORT || 3000; 
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  createServer((req, res) => {
+  createServer(async (req, res) => {
     try {
       const parsedUrl = parse(req.url, true);
-      handle(req, res, parsedUrl);
+      await handle(req, res, parsedUrl);
     } catch (err) {
-      console.error("Error occurred handling", req.url, err);
+      console.error('Error occurred handling', req.url, err);
       res.statusCode = 500;
-      res.end("internal server error");
+      res.end('internal server error');
     }
   })
-    .once("error", (err) => {
+    .once('error', (err) => {
       console.error(err);
       process.exit(1);
     })
