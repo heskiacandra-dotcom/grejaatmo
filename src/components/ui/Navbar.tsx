@@ -20,9 +20,11 @@ export function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -122,7 +124,7 @@ export function Navbar() {
                     transition: "color 0.4s ease",
                   }}
                 >
-                  Keluarga Kudus
+                  {mounted ? "Keluarga Kudus Atmodirono" : "Keluarga Kudus"}
                 </span>
               </Link>
             </div>

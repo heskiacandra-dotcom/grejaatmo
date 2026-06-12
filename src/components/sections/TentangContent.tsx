@@ -1,6 +1,6 @@
 "use client";
 // src/components/sections/TentangContent.tsx
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -32,8 +32,10 @@ const PASTORAL = [
 
 export function TentangContent({ settings = {} }: { settings?: any }) {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     gsap.fromTo(
       ".tentang-reveal",
       { opacity: 0, y: 40 },
@@ -185,8 +187,8 @@ export function TentangContent({ settings = {} }: { settings?: any }) {
                 const descKey = `romo${num}Desc`;
                 
                 // If setting doesn't exist, use fallback
-                const name = settings[nameKey] || `R.D. Nama Romo ${num}`;
-                const desc = settings[descKey] || "Pastor Paroki";
+                const name = settings[nameKey] !== undefined ? settings[nameKey] : `R.D. Nama Romo ${num}`;
+                const desc = settings[descKey] !== undefined ? settings[descKey] : "Pastor Paroki";
                 const img = settings[imgKey] || "/gereja-atmo-baru.jpg";
 
                 return (
@@ -197,7 +199,9 @@ export function TentangContent({ settings = {} }: { settings?: any }) {
                       </div>
                     </div>
                     <h3 style={{ fontFamily: "Playfair Display, serif", fontSize: "1.25rem", color: "#C9A84C", fontWeight: 600, marginBottom: "0.5rem" }}>{name}</h3>
-                    <p style={{ fontSize: "0.9rem", color: "rgba(253,250,244,0.6)" }}>{desc}</p>
+                    <p style={{ fontSize: "0.9rem", color: "rgba(253,250,244,0.6)" }}>
+                      {mounted ? desc : "Pastor Paroki"}
+                    </p>
                   </div>
                 );
               })}

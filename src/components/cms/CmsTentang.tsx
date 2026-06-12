@@ -151,6 +151,7 @@ export function CmsTentang() {
               <img src={settings.tentangImage} alt="Preview" style={{ width: 120, height: 120, objectFit: "cover", borderRadius: "0.5rem" }} />
             )}
             <input type="file" accept="image/*" onChange={(e) => handleUpload(e, "tentangImage")} className="input-sacred" style={{ flex: 1, minWidth: "200px" }} />
+            <p style={{ fontSize: "0.65rem", color: "#B09878" }}>Maks 500KB</p>
           </div>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
@@ -215,6 +216,7 @@ export function CmsTentang() {
                         <img src={settings[imgKey] as string} alt="Preview" style={{ width: 80, height: 80, objectFit: "cover", borderRadius: "50%", border: "2px solid #C9A84C" }} />
                       )}
                       <input type="file" accept="image/*" onChange={(e) => handleUpload(e, imgKey)} className="input-sacred" style={{ flex: 1, minWidth: "150px" }} />
+                      <p style={{ fontSize: "0.65rem", color: "#B09878" }}>Maks 500KB</p>
                     </div>
                   </div>
                   <Field label="Nama Romo" value={settings[nameKey]} onChange={update(nameKey)} />

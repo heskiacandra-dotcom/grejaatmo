@@ -1,6 +1,8 @@
 // src/app/cms/berita/[id]/edit/page.tsx
 import { CmsBeritaForm } from "@/components/cms/CmsBeritaForm";
-import { mockPosts } from "@/lib/mock-data";
+import { db } from "@/lib/db";
+import { posts } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -10,8 +12,9 @@ export const metadata: Metadata = { title: "Edit Berita | CMS" };
 
 export default async function EditBeritaPage({ params }: Props) {
   const { id } = await params;
-  // In production: fetch from DB. For now use mock data
-  const post = mockPosts.find((p) => p.id === parseInt(id));
+  
+  const [post] = await db.select().from(posts).where(eq(posts.id, parseInt(id)));
+  
   if (!post) notFound();
 
   return (
@@ -22,10 +25,10 @@ export default async function EditBeritaPage({ params }: Props) {
         title: post.title,
         excerpt: post.excerpt || "",
         content: post.content,
-        categoryId: post.category.id,
+        categoryId: post.categoryId,
         status: post.status as any,
-        isFeatured: post.isFeatured,
-        coverImage: "",
+        isFeatured: !!post.isFeatured,
+        coverImage: post.coverImage || "",
       }}
     />
   );

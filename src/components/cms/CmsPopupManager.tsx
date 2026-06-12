@@ -129,6 +129,7 @@ export function CmsPopupManager() {
                       })
                       .finally(() => setSaving(false));
                   }} className="input-sacred" />
+                  <p style={{ fontSize: "0.65rem", color: "#B09878" }}>Maks 500KB</p>
                 </div>
               </div>
             </div>

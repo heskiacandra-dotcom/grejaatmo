@@ -1,4 +1,5 @@
 // src/app/tentang/page.tsx
+export const dynamic = "force-dynamic";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { TentangContent } from "@/components/sections/TentangContent";

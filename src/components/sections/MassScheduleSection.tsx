@@ -210,6 +210,14 @@ export function MassScheduleSection() {
                           {schedule.time} WIB
                         </span>
                       </div>
+                      {schedule.location && (
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.15rem" }}>
+                          <MapPin size={11} style={{ color: "rgba(201,168,76,0.5)" }} />
+                          <span style={{ fontSize: "0.75rem", color: "rgba(253,250,244,0.6)", fontWeight: 500 }}>
+                            {schedule.location}
+                          </span>
+                        </div>
+                      )}
                       {schedule.celebrant && (
                         <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                           <User size={11} style={{ color: "rgba(253,250,244,0.4)" }} />

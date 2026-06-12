@@ -6,7 +6,7 @@ import path from "path";
 import { auth } from "@/lib/auth";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
-const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_SIZE = 500 * 1024; // 500KB
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (file.size > MAX_SIZE) {
-      return NextResponse.json({ error: "Ukuran file maksimal 5MB" }, { status: 400 });
+      return NextResponse.json({ error: "Ukuran file maksimal 500KB" }, { status: 400 });
     }
 
     const bytes = await file.arrayBuffer();

@@ -1,7 +1,7 @@
 "use client";
 // src/components/cms/CmsJadwalManager.tsx
 import { useState } from "react";
-import { Plus, Edit, Trash2, Clock, Check, X, AlertCircle } from "lucide-react";
+import { Plus, Edit, Trash2, Clock, Check, X, AlertCircle, MapPin } from "lucide-react";
 import { useEffect } from "react";
 const DAYS = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"] as const;
 type Day = typeof DAYS[number];
@@ -238,6 +238,11 @@ export function CmsJadwalManager() {
                         <span style={{ fontFamily: "Cinzel, serif", fontSize: "0.9rem", fontWeight: 700, color: "#1A1614" }}>{s.time} WIB</span>
                       </div>
                       {s.celebrant && <p style={{ fontSize: "0.72rem", color: "#8B7355" }}>{s.celebrant}</p>}
+                      {s.location && (
+                        <p style={{ fontSize: "0.68rem", color: "#C9A84C", display: "flex", alignItems: "center", gap: "0.25rem", marginTop: "0.1rem" }}>
+                          <MapPin size={10} /> {s.location}
+                        </p>
+                      )}
                       {s.notes && <p style={{ fontSize: "0.68rem", color: "#B09878", fontStyle: "italic" }}>{s.notes}</p>}
                     </div>
                     <div style={{ display: "flex", gap: "0.25rem" }}>

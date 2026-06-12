@@ -319,7 +319,7 @@ export function CmsBeritaForm({ initialData, mode }: CmsBeritaFormProps) {
                   <>
                     <Upload size={24} style={{ color: "#B09878", margin: "0 auto 0.5rem" }} />
                     <p style={{ fontSize: "0.8rem", color: "#8B7355" }}>Klik untuk unggah gambar</p>
-                    <p style={{ fontSize: "0.7rem", color: "#B09878", marginTop: "0.25rem" }}>JPG, PNG, WebP • Maks 5MB</p>
+                    <p style={{ fontSize: "0.7rem", color: "#B09878", marginTop: "0.25rem" }}>JPG, PNG, WebP • Maks 500KB</p>
                   </>
                 )}
               </div>
