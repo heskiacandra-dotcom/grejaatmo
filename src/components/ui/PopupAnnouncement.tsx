@@ -27,8 +27,8 @@ export function PopupAnnouncement() {
     setIsOpen(false);
   };
 
-  // Hide on admin pages
-  if (pathname?.startsWith("/cms") || pathname?.startsWith("/auth")) {
+  // Hide on admin pages and login page
+  if (pathname?.startsWith("/cms") || pathname?.startsWith("/auth") || pathname === "/login") {
     return null;
   }
 

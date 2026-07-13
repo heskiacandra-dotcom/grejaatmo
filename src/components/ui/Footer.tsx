@@ -169,63 +169,6 @@ export function Footer() {
               </li>
             </ul>
           </div>
-
-          {/* Jadwal Cepat */}
-          <div>
-            <h3
-              style={{
-                fontFamily: "Cinzel, serif",
-                fontSize: "0.65rem",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                color: "#C9A84C",
-                marginBottom: "1.25rem",
-              }}
-            >
-              Misa Minggu
-            </h3>
-            {[
-              { time: "07.00 WIB", note: "Misa Pertama" },
-              { time: "09.00 WIB", note: "Misa Kedua" },
-              { time: "17.00 WIB", note: "Misa Sore" },
-            ].map((misa) => (
-              <div
-                key={misa.time}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingBottom: "0.6rem",
-                  borderBottom: "1px solid rgba(201,168,76,0.08)",
-                  marginBottom: "0.6rem",
-                }}
-              >
-                <span style={{ fontFamily: "Cinzel, serif", fontSize: "0.9rem", color: "#C9A84C", fontWeight: 600 }}>
-                  {misa.time}
-                </span>
-                <span style={{ fontSize: "0.75rem", color: "rgba(253,250,244,0.5)" }}>
-                  {misa.note}
-                </span>
-              </div>
-            ))}
-            <Link
-              href="/jadwal"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.4rem",
-                fontSize: "0.7rem",
-                fontFamily: "Cinzel, serif",
-                letterSpacing: "0.1em",
-                color: "#C9A84C",
-                textDecoration: "none",
-                marginTop: "0.75rem",
-                textTransform: "uppercase",
-              }}
-            >
-              Lihat Jadwal Lengkap →
-            </Link>
-          </div>
         </div>
 
         {/* Bottom */}
@@ -242,11 +185,6 @@ export function Footer() {
           <p style={{ fontSize: "0.75rem", color: "rgba(253,250,244,0.35)", fontFamily: "Cinzel, serif", letterSpacing: "0.05em" }}>
             {settings.footerText || `© ${new Date().getFullYear()} Paroki Keluarga Kudus Atmodirono. Hak Cipta Dilindungi.`}
           </p>
-          <div style={{ display: "flex", gap: "1.5rem" }}>
-            <Link href="/auth/login" style={{ fontSize: "0.7rem", color: "rgba(253,250,244,0.35)", textDecoration: "none", fontFamily: "Cinzel, serif", letterSpacing: "0.05em" }}>
-              Admin Login
-            </Link>
-          </div>
         </div>
       </div>
 

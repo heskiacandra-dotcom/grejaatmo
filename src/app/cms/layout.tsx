@@ -17,7 +17,7 @@ export default function CmsLayout({
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      redirect("/auth/login");
+      redirect("/login");
     }
   }, [status]);
 

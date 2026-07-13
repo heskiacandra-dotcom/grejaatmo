@@ -74,8 +74,8 @@ export function Navbar() {
                 gap: "0.75rem",
               }}
             >
-              {/* Easter Egg Admin Link (1-Click on Logo Icon) */}
-              <Link href="/auth/login" aria-label="Admin Login">
+              {/* Logo Link to Home */}
+              <Link href="/" aria-label="Beranda">
                 <div
                   style={{
                     width: 40,

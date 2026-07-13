@@ -214,7 +214,7 @@ export function CmsSidebar({ user }: { user: User | undefined }) {
         </Link>
 
         <button
-          onClick={() => signOut({ callbackUrl: "/auth/login" })}
+          onClick={() => signOut({ callbackUrl: "/login" })}
           style={{
             width: "100%",
             background: "none",
